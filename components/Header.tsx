@@ -21,7 +21,11 @@ const HeaderControls: React.FC = () => {
         if (window.aistudio?.openSelectKey) {
             await window.aistudio.openSelectKey();
         } else {
-            alert(t('alertApiKeyUtilUnavailable'));
+            const apiKey = prompt(t('enterApiKeyPrompt'));
+            if (apiKey) {
+                localStorage.setItem('GEMINI_API_KEY', apiKey);
+                alert(t('apiKeySaved'));
+            }
         }
     };
 
